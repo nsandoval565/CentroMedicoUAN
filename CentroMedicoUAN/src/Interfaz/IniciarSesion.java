@@ -42,7 +42,7 @@ public class IniciarSesion extends JFrame implements ActionListener{
 		this.add(usuario);
 		
 		this.contrasena=new JLabel();
-		this.contrasena.setText("Contraseï¿½a");
+		this.contrasena.setText("Contraseña");
 		this.contrasena.setBounds(10, 35, 200, 80);
 		this.add(contrasena);
 	}

@@ -29,6 +29,7 @@ public class ReadXMLFile {
 	private Disponibilidades disponibilidad;
 	private Especialidades especialidad;
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
+	
 	public ReadXMLFile() {
 
 	}
@@ -38,12 +39,9 @@ public class ReadXMLFile {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(fXmlFile);
-
-		// doc.getDocumentElement().normalize();
-
 		NodeList nListCmedico = doc.getElementsByTagName("centro_medico");
 
-		for (int i = 0; i < nListCmedico.getLength(); i++)// centro medico
+		for (int i = 0; i < nListCmedico.getLength(); i++)
 		{
 			Node nodeCM = nListCmedico.item(i);
 
@@ -53,18 +51,12 @@ public class ReadXMLFile {
 				eps = new Eps();
 
 				eps.setNombreEps(elementCM.getElementsByTagName("nombre").item(i).getTextContent());
-				System.out.println(elementCM.getElementsByTagName("nombre").item(i).getTextContent());
 
 				eps.setMunicipioEps(elementCM.getElementsByTagName("municipio").item(i).getTextContent());
-				System.out.println(elementCM.getElementsByTagName("municipio").item(i).getTextContent());
 
 				eps.setDireccionEps(elementCM.getElementsByTagName("direccion").item(i).getTextContent());
-				System.out.println(elementCM.getElementsByTagName("direccion").item(i).getTextContent());
 
 				eps.setTelefonoEps(elementCM.getElementsByTagName("telefono").item(i).getTextContent());
-				System.out.println(elementCM.getElementsByTagName("telefono").item(i).getTextContent());
-
-				//dao.crearEpsDAO(eps);
 				
 				NodeList nListServicio = elementCM.getElementsByTagName("servicio");
 
@@ -77,25 +69,15 @@ public class ReadXMLFile {
 						servicio = new Servicios();
 
 						servicio.setNombreServicio(elementSer.getAttribute("nombre"));
-						System.out.println(elementSer.getAttribute("nombre"));
 
-						servicio.setDescripcionServicio(
-								elementSer.getElementsByTagName("descripcion").item(0).getTextContent());
-						System.out.println(elementSer.getElementsByTagName("descripcion").item(0).getTextContent());
+						servicio.setDescripcionServicio(elementSer.getElementsByTagName("descripcion").item(0).getTextContent());
 
-						servicio.setDuracionServicio(
-								elementSer.getElementsByTagName("duracion").item(0).getTextContent());
-						System.out.println(elementSer.getElementsByTagName("duracion").item(0).getTextContent());
+						servicio.setDuracionServicio(elementSer.getElementsByTagName("duracion").item(0).getTextContent());
 
-						servicio.setComplejidadServicio(
-								elementSer.getElementsByTagName("complejidad").item(0).getTextContent());
-						System.out.println(elementSer.getElementsByTagName("complejidad").item(0).getTextContent());
+						servicio.setComplejidadServicio(elementSer.getElementsByTagName("complejidad").item(0).getTextContent());
 
 						servicio.setCostoServicio(elementSer.getElementsByTagName("costo").item(0).getTextContent());
-						System.out.println(elementSer.getElementsByTagName("costo").item(0).getTextContent());
-						
-						//dao.crearServicioDAO(servicio);
-					} // servicio.
+					} 
 					a.crearServicio(servicio);
 				}
 
@@ -110,23 +92,16 @@ public class ReadXMLFile {
 						medico = new Medicos();
 
 						medico.setIdentificacion(elementMed.getAttribute("identificacion"));
-						System.out.println(elementMed.getAttribute("identificacion"));
 
 						medico.setNombreMedico(elementMed.getElementsByTagName("nombre").item(0).getTextContent());
-						System.out.println(elementMed.getElementsByTagName("nombre").item(0).getTextContent());
 
 						medico.setApellidoMedico(elementMed.getElementsByTagName("apellido").item(0).getTextContent());
-						System.out.println(elementMed.getElementsByTagName("apellido").item(0).getTextContent());
 
 						medico.setTelefonoMedico(elementMed.getElementsByTagName("telefono").item(0).getTextContent());
-						System.out.println(elementMed.getElementsByTagName("telefono").item(0).getTextContent());
-						
-						//dao.crearMedicoDAO(medico);
 						
 						NodeList nListDisp = elementMed.getElementsByTagName("fecha");
 
-						for (int k = 0; k < nListDisp.getLength(); k++)// disponibilidad
-						{
+						for (int k = 0; k < nListDisp.getLength(); k++){
 
 							Node nodeDisp = nListDisp.item(k);
 
@@ -136,40 +111,27 @@ public class ReadXMLFile {
 								disponibilidad = new Disponibilidades();
 
 								disponibilidad.setFecha(elementDisp.getAttribute("dia"));
-								System.out.println(elementDisp.getAttribute("dia"));
 
 								disponibilidad.setHora_inicio(elementDisp.getAttribute("horainicio"));
-								System.out.println(elementDisp.getAttribute("horainicio"));
 
 								disponibilidad.setHora_fin(elementDisp.getAttribute("horafin"));
-								System.out.println(elementDisp.getAttribute("horafin"));
-								
-								//dao.crearDisponibilidadDAO(disponibilidad, medico);
 							}
-
 							medico.crearDisponibilidad(disponibilidad);
 						}
 
 						NodeList nListEsp = elementMed.getElementsByTagName("especialidad");
 
-						for (int l = 0; l < nListEsp.getLength(); l++)// especialidad
-						{
+						for (int l = 0; l < nListEsp.getLength(); l++){
 							especialidad = new Especialidades();
 							Node nodeEsp = nListEsp.item(l);
 							Element elementEsp = (Element) nodeEsp;
 
 							especialidad.setNombreEspecialidad(elementEsp.getAttribute("nombre"));
-							System.out.println(elementEsp.getAttribute("nombre"));
-							
-							//dao.crearEspecialidadDAO(especialidad, medico);
 							medico.crearEspecialidad(especialidad);
 						}
-
 					}
-
 					a.crearMedico(medico);
 				}
-
 			}
 			a.crearEps(eps);
 		}

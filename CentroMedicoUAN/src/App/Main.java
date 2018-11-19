@@ -1,4 +1,6 @@
-package Interfaz;
+package App;
+
+import Interfaz.VentanaClientes;
 
 public class Main {
 	
