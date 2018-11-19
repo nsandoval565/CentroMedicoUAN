@@ -17,28 +17,18 @@ import Modelo.Especialidades;
 import Modelo.Medicos;
 
 public class CrearMedico extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JLabel identificacionMed;
 	private JLabel nombreMed;
 	private JLabel apellidoMed;
 	private JLabel telefonoMed;
-//	private JLabel especialidadMed;
-//	private JLabel fechaMed;
-//	private JLabel horaInicio;
-//	private JLabel horaFin;
 	private JTextField txtIdentificacionMed;
 	private JTextField txtNombreMed;
 	private JTextField txtApellidoMed;
 	private JTextField txtTelefonoMed;
-//	private JTextField txtEspecialidad;
-//	private JTextField txtFechaMed;
-//	private JTextField txtHoraInicio;
-//	private JTextField txtHoraFin;
 	private JButton btnCrearMed;
 	private JButton btnVolverMed;
 	private Medicos medico;
-//	private Especialidad especialidad;
-//	private Disponibilidad dispo;
-	//private DAO_Crear dao;
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
 	
 	public CrearMedico(Medicos medico, Especialidades especialidad, Disponibilidades dispo){
@@ -55,6 +45,7 @@ public class CrearMedico extends JFrame implements ActionListener{
 		this.crearIngreseDatos();
 		this.crearBotones();
 	}
+	
 	private void crearEtiquetas() {
 		this.identificacionMed=new JLabel();
 		this.identificacionMed.setText("Identificacion");
@@ -75,26 +66,6 @@ public class CrearMedico extends JFrame implements ActionListener{
 		this.telefonoMed.setText("Telefono");
 		this.telefonoMed.setBounds(10, 95, 200, 80);
 		this.add(telefonoMed);
-		
-//		this.especialidadMed=new JLabel();
-//		this.especialidadMed.setText("Especialidad");
-//		this.especialidadMed.setBounds(10, 125, 200, 80);
-//		this.add(especialidadMed);
-//		
-//		this.fechaMed=new JLabel();
-//		this.fechaMed.setText("Fecha Disp.");
-//		this.fechaMed.setBounds(10, 155, 200, 80);
-//		this.add(fechaMed);
-//		
-//		this.horaInicio=new JLabel();
-//		this.horaInicio.setText("Hora Ini. Disp.");
-//		this.horaInicio.setBounds(10, 185, 200, 80);
-//		this.add(horaInicio);
-//		
-//		this.horaFin=new JLabel();
-//		this.horaFin.setText("Hora Fin Disp.");
-//		this.horaFin.setBounds(10, 215, 200, 80);
-//		this.add(horaFin);
 	}
 	
 	private void crearIngreseDatos() {
@@ -113,22 +84,6 @@ public class CrearMedico extends JFrame implements ActionListener{
 		this.txtTelefonoMed=new JTextField();
 		this.txtTelefonoMed.setBounds(90, 125, 180, 20);
 		this.add(txtTelefonoMed);
-		
-//		this.txtEspecialidad=new JTextField();
-//		this.txtEspecialidad.setBounds(90, 155, 180, 20);
-//		this.add(txtEspecialidad);
-//		
-//		this.txtFechaMed=new JTextField();
-//		this.txtFechaMed.setBounds(90, 185, 180, 20);
-//		this.add(txtFechaMed);
-//		
-//		this.txtHoraInicio=new JTextField();
-//		this.txtHoraInicio.setBounds(90, 215, 180, 20);
-//		this.add(txtHoraInicio);
-//		
-//		this.txtHoraFin=new JTextField();
-//		this.txtHoraFin.setBounds(90, 245, 180, 20);
-//		this.add(txtHoraFin);
 	}
 	
 	private void crearBotones() {
@@ -152,23 +107,11 @@ public class CrearMedico extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Completa el formulario");
 			} else {
 				medico = new Medicos();
-//				especialidad = new Especialidad();
-//				dispo = new Disponibilidad();
-				//dao = new DAO_Crear();
 				medico.setIdentificacion(txtIdentificacionMed.getText());
 				medico.setNombreMedico(txtNombreMed.getText());
 				medico.setApellidoMedico(txtApellidoMed.getText());
 				medico.setTelefonoMedico(txtTelefonoMed.getText());
 				a.crearMedico(medico);
-				//dao.crearMedicoDAO(medico);
-//				especialidad.setNombreEspecialidad(txtEspecialidad.getText());
-//				medico.crearEspecialidad(especialidad);
-//				dao.crearEspecialidadDAO(especialidad);
-//				dispo.setFecha(txtFechaMed.getText());
-//				dispo.setHora_inicio(txtHoraInicio.getText());
-//				dispo.setHora_fin(txtHoraFin.getText());
-//				medico.crearDisponibilidad(dispo);
-//				dao.crearDisponibilidadDAO(dispo);
 				JOptionPane.showMessageDialog(null, "Medico Creado Exitosamente");
 				limpiarFormulario();
 			}

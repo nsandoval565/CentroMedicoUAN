@@ -15,6 +15,7 @@ import Modelo.CentroMedico;
 import Modelo.Servicios;
 
 public class CrearServicio extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JLabel nombreServ;
 	private JLabel descripcionServ;
 	private JLabel complejidadServ;
@@ -28,7 +29,6 @@ public class CrearServicio extends JFrame implements ActionListener{
 	private JButton btnCrearServ;
 	private JButton btnVolverServ;
 	private Servicios servicio;
-	//private DAO_Crear dao = new DAO_Crear();
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
 	
 	public CrearServicio(){
@@ -45,6 +45,7 @@ public class CrearServicio extends JFrame implements ActionListener{
 		this.crearIngreseDatos();
 		this.crearBotones();
 	}
+	
 	private void crearEtiquetas() {
 		this.nombreServ=new JLabel();
 		this.nombreServ.setText("Nombre");
@@ -122,7 +123,6 @@ public class CrearServicio extends JFrame implements ActionListener{
 				servicio.setDuracionServicio(txtDuracionServ.getText());
 				servicio.setCostoServicio(txtCostoServ.getText());
 				a.crearServicio(servicio);
-				//dao.crearServicioDAO(servicio);
 				JOptionPane.showMessageDialog(null, "Servicio Creado Exitosamente");
 				limpiarFormulario();
 			}

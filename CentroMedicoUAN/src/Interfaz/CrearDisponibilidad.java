@@ -11,10 +11,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Modelo.Disponibilidades;
-import Modelo.Especialidades;
 import Modelo.Medicos;
 
 public class CrearDisponibilidad extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	public JLabel fechaDispo;
 	public JLabel horaInicio;
 	public JLabel horaFin;
@@ -25,7 +25,7 @@ public class CrearDisponibilidad extends JFrame implements ActionListener{
 	private JButton btnCrearDisponibilidad;
 	private Medicos medico;
 	private Disponibilidades dispo;
-	//private DAO_Crear dao;
+	
 	public CrearDisponibilidad(Medicos medico){
 		super();
 		this.medico=medico;
@@ -58,6 +58,7 @@ public class CrearDisponibilidad extends JFrame implements ActionListener{
 		this.horaFin.setBounds(10, 65, 200, 80);
 		this.add(horaFin);
 	}
+	
 	private void crearIngreseDatos() {
 		this.txtFechaDispo=new JTextField();
 		this.txtFechaDispo.setBounds(90, 35, 180, 20);
@@ -72,6 +73,7 @@ public class CrearDisponibilidad extends JFrame implements ActionListener{
 		this.add(txtHoraFin);
 
 	}
+	
 	private void crearBotones() {
 		this.btnCrearDisponibilidad=new JButton();
 		this.btnCrearDisponibilidad.setText("Crear Disponibilidad");
@@ -93,12 +95,10 @@ public class CrearDisponibilidad extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Completa el formulario");
 			} else {
 				dispo = new Disponibilidades();
-				//dao = new DAO_Crear();
 				dispo.setFecha(txtFechaDispo.getText());
 				dispo.setHora_inicio(txtHoraInicio.getText());
 				dispo.setHora_fin(txtHoraFin.getText());
 				medico.crearDisponibilidad(dispo);
-				//dao.crearDisponibilidadDAO(dispo,medico);
 				JOptionPane.showMessageDialog(null, "Disponibilidad Creada Exitosamente");
 				limpiarFormulario();
 			}

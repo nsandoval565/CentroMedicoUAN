@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class IniciarSesion extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JLabel usuario;
 	private JLabel contrasena;
 	private JTextField txtUsuario;
@@ -85,7 +86,7 @@ public class IniciarSesion extends JFrame implements ActionListener{
 			setVisible(false);
 			JOptionPane.showMessageDialog(null, "Bienvenido");
 		}else{
-			JOptionPane.showMessageDialog(null, "Usuario y contraseÃ±a incorrectos");
+			JOptionPane.showMessageDialog(null, "Usuario y contraseña incorrectos");
 			limpiarFormulario();
 		}
 	}

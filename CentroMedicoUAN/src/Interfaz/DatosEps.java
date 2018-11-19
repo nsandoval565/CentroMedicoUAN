@@ -14,9 +14,9 @@ import javax.swing.JTextField;
 import Controlador.Fachada;
 import Modelo.CentroMedico;
 import Modelo.Eps;
-import Modelo.Medicos;
 
 public class DatosEps extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JButton btnVolver;
 	private JButton btnVerEps;
 	private JLabel nombreEps;
@@ -27,7 +27,7 @@ public class DatosEps extends JFrame implements ActionListener{
 	private JTextField txtMunicipioEps;
 	private JTextField txtDireccionEps;
 	private JTextField txtTelefonoEps;
-	private JComboBox listaEps;
+	private JComboBox<String> listaEps;
 	private Eps eps = new Eps();
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
 	
@@ -89,6 +89,7 @@ public class DatosEps extends JFrame implements ActionListener{
 		this.txtTelefonoEps.setBounds(90, 150, 180, 20);
 		this.add(txtTelefonoEps);
 	}
+	
 	private void crearBotones() {
 		this.btnVolver=new JButton();
 		this.btnVolver.setText("Volver");
@@ -102,7 +103,7 @@ public class DatosEps extends JFrame implements ActionListener{
 		btnVerEps.addActionListener(this);
 		this.add(btnVerEps);
 		
-		this.listaEps = new JComboBox();
+		this.listaEps = new JComboBox<String>();
 		this.listaEps.setBounds(10, 20, 149, 20);
 		this.add(listaEps);
 		this.leerEps();
@@ -121,7 +122,7 @@ public class DatosEps extends JFrame implements ActionListener{
 	}
 	
 	private void leerEps() {
-		DefaultComboBoxModel mlista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> mlista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < a.getLstEps().size(); i++) {
 			mlista.addElement(a.getLstEps().get(i).getNombreEps());

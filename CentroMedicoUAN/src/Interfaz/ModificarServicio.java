@@ -17,6 +17,7 @@ import Modelo.CentroMedico;
 import Modelo.Servicios;
 
 public class ModificarServicio extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JButton btnVolver;
 	private JButton btnVerServicio;
 	private JButton btnModificarServicio;
@@ -30,9 +31,8 @@ public class ModificarServicio extends JFrame implements ActionListener{
 	private JTextField txtComServicio;
 	private JTextField txtDurServicio;
 	private JTextField txtCosServicio;
-	private JComboBox listaServicios;
+	private JComboBox<String> listaServicios;
 	private Servicios servicio = new Servicios();
-	//private DAO_Modificar dao = new DAO_Modificar();
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
 	public ModificarServicio(){
 		super();
@@ -48,6 +48,7 @@ public class ModificarServicio extends JFrame implements ActionListener{
 		this.crearIngresoDatos();
 		this.crearBotones();
 	}
+	
 	private void crearEtiquetas() {
 		this.nomServicio=new JLabel();
 		this.nomServicio.setText("Nombre");
@@ -116,7 +117,7 @@ public class ModificarServicio extends JFrame implements ActionListener{
 		btnModificarServicio.addActionListener(this);
 		this.add(btnModificarServicio);
 		
-		this.listaServicios = new JComboBox();
+		this.listaServicios = new JComboBox<String>();
 		this.listaServicios.setBounds(10, 20, 149, 20);
 		this.add(listaServicios);
 		this.leerServicios();
@@ -142,7 +143,6 @@ public class ModificarServicio extends JFrame implements ActionListener{
 			servicio.setDescripcionServicio(txtDesServicio.getText());
 			servicio.setComplejidadServicio(txtComServicio.getText());
 			servicio.setDuracionServicio(txtDurServicio.getText());
-			//dao.modificarServicioDAO(servicio);
 			ModificarServicio eli= new ModificarServicio();
 			this.setVisible(false);
 			eli.setVisible(true);
@@ -151,7 +151,7 @@ public class ModificarServicio extends JFrame implements ActionListener{
 	}
 	
 	private void leerServicios() {
-		DefaultComboBoxModel slista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> slista = new DefaultComboBoxModel<String>();
 		for (int i = 0; i < a.getLstServicios().size(); i++) {
 			slista.addElement(a.getLstServicios().get(i).getNombreServicio());
 		}
@@ -169,5 +169,3 @@ public class ModificarServicio extends JFrame implements ActionListener{
 		txtCosServicio.setText(servicio.getCostoServicio());
 	}
 }
-
-

@@ -17,6 +17,7 @@ import Modelo.CentroMedico;
 import Modelo.Servicios;
 
 public class EliminarServicio extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JButton btnVolver;
 	private JButton btnVerServicio;
 	private JButton btnEliminarServicio;
@@ -30,10 +31,8 @@ public class EliminarServicio extends JFrame implements ActionListener{
 	private JTextField txtComServicio;
 	private JTextField txtDurServicio;
 	private JTextField txtCosServicio;
-	private JComboBox listaServicios;
+	private JComboBox<String> listaServicios;
 	private Servicios servicio = new Servicios();
-	private String nombreServicio;
-	//private DAO_Eliminar dao = new DAO_Eliminar();
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
 	
 	public EliminarServicio(){
@@ -124,13 +123,14 @@ public class EliminarServicio extends JFrame implements ActionListener{
 		btnVerServicio.addActionListener(this);
 		this.add(btnVerServicio);
 		
-		this.listaServicios = new JComboBox();
+		this.listaServicios = new JComboBox<String>();
 		this.listaServicios.setBounds(10, 20, 149, 20);
 		this.add(listaServicios);
 		this.leerServicios();
 		
 		this.llenarServicios();
 	}
+	
 	public void actionPerformed(ActionEvent e) {	
 		String nombreServicio = (String) listaServicios.getSelectedItem();
 		
@@ -146,7 +146,6 @@ public class EliminarServicio extends JFrame implements ActionListener{
 		
 		if(e.getSource()==btnEliminarServicio){
 			a.eliminarServicio(nombreServicio);
-			//dao.eliminarServicioDAO(servicio);
 			EliminarServicio ven = new EliminarServicio();
 			this.setVisible(false);
 			ven.setVisible(true);
@@ -155,7 +154,7 @@ public class EliminarServicio extends JFrame implements ActionListener{
 	}
 	
 	private void leerServicios() {
-		DefaultComboBoxModel slista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> slista = new DefaultComboBoxModel<String>();
 		for (int i = 0; i < a.getLstServicios().size(); i++) {
 			slista.addElement(a.getLstServicios().get(i).getNombreServicio());
 		}

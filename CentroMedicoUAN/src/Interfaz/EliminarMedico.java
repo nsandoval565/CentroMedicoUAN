@@ -14,11 +14,10 @@ import javax.swing.JTextField;
 
 import Controlador.Fachada;
 import Modelo.CentroMedico;
-import Modelo.Disponibilidades;
-import Modelo.Especialidades;
 import Modelo.Medicos;
 
 public class EliminarMedico extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JButton btnVolver;
 	private JButton btnVerMedico;
 	private JButton btnEliminarMedico;
@@ -32,14 +31,11 @@ public class EliminarMedico extends JFrame implements ActionListener{
 	private JTextField txtNombreMed;
 	private JTextField txtApellidoMed;
 	private JTextField txtTelefonoMed;
-	private JComboBox listaEsp;
-	private JComboBox listaMedicos;
-	private JComboBox listaDispo;
-	private String identificacion,nombre,fecha;
+	private JComboBox<String> listaEsp;
+	private JComboBox<String> listaMedicos;
+	private JComboBox<String> listaDispo;
+	private String nombre,fecha;
 	private Medicos medico = new Medicos();
-	private Especialidades espec = new Especialidades();
-	private Disponibilidades dispo = new Disponibilidades();
-	//private DAO_Eliminar dao = new DAO_Eliminar();
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
 	
 	public EliminarMedico(){
@@ -110,6 +106,7 @@ public class EliminarMedico extends JFrame implements ActionListener{
 		this.txtTelefonoMed.setBounds(95, 140, 180, 20);
 		this.add(txtTelefonoMed);
 	}
+	
 	private void crearBotones() {
 		this.btnVolver=new JButton();
 		this.btnVolver.setText("Volver");
@@ -129,16 +126,16 @@ public class EliminarMedico extends JFrame implements ActionListener{
 		btnEliminarMedico.addActionListener(this);
 		this.add(btnEliminarMedico);
 		
-		this.listaMedicos = new JComboBox();
+		this.listaMedicos = new JComboBox<String>();
 		this.listaMedicos.setBounds(15, 20, 149, 20);
 		this.add(listaMedicos);
 		this.leerMedicos();
 		
-		this.listaEsp = new JComboBox();
+		this.listaEsp = new JComboBox<String>();
 		this.listaEsp.setBounds(95, 170, 180, 20);
 		this.add(listaEsp);
 		
-		this.listaDispo = new JComboBox();
+		this.listaDispo = new JComboBox<String>();
 		this.listaDispo.setBounds(95, 200, 180, 20);
 		this.add(listaDispo);
 		
@@ -155,13 +152,9 @@ public class EliminarMedico extends JFrame implements ActionListener{
 		}
 		
 		if(e.getSource()==btnEliminarMedico){
-			
 			medico.eliminarEspecialidad(nombre);
-			//dao.eliminarEspecialidadDAO(medico);
 			medico.eliminarDisponibilidad(fecha);
-			//dao.eliminarDisponibilidadDAO(medico);
 			a.eliminarMedico(identificacion);
-			//dao.eliminarMedicoDAO(medico);
 			EliminarMedico eli= new EliminarMedico();
 			this.setVisible(false);
 			eli.setVisible(true);
@@ -174,7 +167,7 @@ public class EliminarMedico extends JFrame implements ActionListener{
 	}
 	
 	private void leerMedicos() {
-		DefaultComboBoxModel mlista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> mlista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < a.getLstMedicos().size(); i++) {
 			mlista.addElement(a.getLstMedicos().get(i).getIdentificacion());
@@ -183,7 +176,7 @@ public class EliminarMedico extends JFrame implements ActionListener{
 	}
 	
 	private void leerEspec(){
-		DefaultComboBoxModel eLista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> eLista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < medico.getLstEspecialidades().size(); i++) {
 			eLista.addElement(medico.getLstEspecialidades().get(i).getNombreEspecialidad());
@@ -192,7 +185,7 @@ public class EliminarMedico extends JFrame implements ActionListener{
 	}
 	
 	private void leerDispo(){
-		DefaultComboBoxModel dLista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> dLista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < medico.getLstDisponibilidades().size(); i++) {
 			dLista.addElement(medico.getLstDisponibilidades().get(i).getFecha());

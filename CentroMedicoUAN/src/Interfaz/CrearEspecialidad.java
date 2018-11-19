@@ -14,12 +14,12 @@ import Modelo.Especialidades;
 import Modelo.Medicos;
 
 public class CrearEspecialidad extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JLabel especialidadl;
 	private JTextField txtEspecialidad;
 	private JButton btnVolver;
 	private JButton btnCrearEspecialidad;
 	private Medicos medico;
-	//private DAO_Crear dao;
 	private Especialidades especialidad;
 	
 	public CrearEspecialidad(Medicos medico){
@@ -71,14 +71,13 @@ public class CrearEspecialidad extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Completa el formulario");
 			} else {
 				especialidad = new Especialidades();
-				//dao = new DAO_Crear();
 				especialidad.setNombreEspecialidad(txtEspecialidad.getText());
 				medico.crearEspecialidad(especialidad);
-				//dao.crearEspecialidadDAO(especialidad,medico);
 				JOptionPane.showMessageDialog(null, "Especialidad Creada Exitosamente");
 				limpiarFormulario();
 			}
 		}
+		
 		if(e.getSource()==btnVolver){
 			ConsultarMedico ventana = new ConsultarMedico();
 			ventana.setVisible(true);

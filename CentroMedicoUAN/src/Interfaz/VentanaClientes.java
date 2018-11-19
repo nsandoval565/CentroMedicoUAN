@@ -16,6 +16,7 @@ import Controlador.Fachada;
 import Modelo.CentroMedico;
 
 public class VentanaClientes extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JMenuBar menuClientes;
 	private JMenu inicio;
 	private JMenu empleados;
@@ -31,6 +32,7 @@ public class VentanaClientes extends JFrame implements ActionListener{
 	private JMenuItem ubicacion;
 	private JLabel label;
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
+	
 	public VentanaClientes(){
 		super();
 		setIconImage(Toolkit.getDefaultToolkit().getImage

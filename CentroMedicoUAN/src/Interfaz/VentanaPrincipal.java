@@ -17,10 +17,11 @@ import Modelo.CentroMedico;
 import Modelo.Disponibilidades;
 import Modelo.Especialidades;
 import Modelo.Medicos;
-//import Parser.ReadJSONFile;
-//import Parser.ReadXMLFile;
+import Parser.ReadJSONFile;
+import Parser.ReadXMLFile;
 
 public class VentanaPrincipal extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JMenuBar menu;
 	private JMenu medico;
 	private JMenu servicio;
@@ -58,6 +59,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 		this.crearFondo();
 		this.crearMenu();
 	}
+	
 	private void crearFondo() {
 		label = new JLabel();
 		label.setIcon(new ImageIcon(
@@ -65,6 +67,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 		label.setBounds(-422, -178, 916, 528);
 		this.add(label);
 	}
+	
 	private void crearMenu() {
 		menu = new JMenuBar();
 		setJMenuBar(menu);
@@ -162,6 +165,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 		cerrarSesion.addActionListener(this);
 		salir.add(cerrarSesion);
 	}
+	
 	public void actionPerformed(ActionEvent e) {
 		Medicos medico = new Medicos();
 		Especialidades especialidad = new Especialidades();
@@ -243,14 +247,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 			if(cargaXML=="listo"){
 				JOptionPane.showMessageDialog(null, "El XML Ya Se Cargo");
 			}else{
-//				ReadXMLFile xml=new ReadXMLFile();
-//				try {
-//					xml.cargar_xml();
-//					JOptionPane.showMessageDialog(null, "XML Cargado Exitosamente");
-//					cargaXML="listo";
-//				} catch (Exception i) {
-//					i.printStackTrace();
-//				}
+				ReadXMLFile xml=new ReadXMLFile();
+				try {
+					xml.cargar_xml();
+					JOptionPane.showMessageDialog(null, "XML Cargado Exitosamente");
+					cargaXML="listo";
+				} catch (Exception i) {
+					i.printStackTrace();
+				}
 			}
 		}
 		
@@ -258,14 +262,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 			if(cargaJSON=="listo"){
 				JOptionPane.showMessageDialog(null, "El JSON Ya Se Cargo");
 			}else{
-//				ReadJSONFile json=new ReadJSONFile();
-//				try {
-//					json.CargarJson();
-//					JOptionPane.showMessageDialog(null, "JSON Cargado Exitosamente");
-//					cargaJSON="listo";
-//				} catch (Exception i) {
-//					i.printStackTrace();
-//				}
+				ReadJSONFile json=new ReadJSONFile();
+				try {
+					json.CargarJson();
+					JOptionPane.showMessageDialog(null, "JSON Cargado Exitosamente");
+					cargaJSON="listo";
+				} catch (Exception i) {
+					i.printStackTrace();
+				}
 			}
 		}
 		

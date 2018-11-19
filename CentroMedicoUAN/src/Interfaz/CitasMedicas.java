@@ -14,9 +14,9 @@ import javax.swing.JTextField;
 import Controlador.Fachada;
 import Modelo.CentroMedico;
 import Modelo.Clientes;
-import Modelo.Eps;
 
 public class CitasMedicas extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JButton btnVolver;
 	private JButton btnVerCliente;
 	private JLabel nombreCliente;
@@ -41,7 +41,7 @@ public class CitasMedicas extends JFrame implements ActionListener{
 	private JTextField txtHoraInicioCita;
 	private JTextField txtHoraFinCita;
 	private JTextField txtPrecioCliente;
-	private JComboBox listaCliente;
+	private JComboBox<String> listaCliente;
 	private Clientes cliente = new Clientes();
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
 	
@@ -59,6 +59,7 @@ public class CitasMedicas extends JFrame implements ActionListener{
 		this.crearIngresoDatos();
 		this.crearBotones();
 	}
+	
 	private void crearEtiquetas() {
 		this.idCliente=new JLabel();
 		this.idCliente.setText("Identificacion");
@@ -115,6 +116,7 @@ public class CitasMedicas extends JFrame implements ActionListener{
 		this.precioCliente.setBounds(10, 330, 200, 80);
 		this.add(precioCliente);
 	}
+	
 	private void crearIngresoDatos() {
 		this.txtIdCliente=new JTextField();
 		this.txtIdCliente.setEditable(false);
@@ -172,6 +174,7 @@ public class CitasMedicas extends JFrame implements ActionListener{
 		this.add(txtPrecioCliente);
 		
 	}
+	
 	private void crearBotones() {
 		this.btnVolver=new JButton();
 		this.btnVolver.setText("Volver");
@@ -185,7 +188,7 @@ public class CitasMedicas extends JFrame implements ActionListener{
 		btnVerCliente.addActionListener(this);
 		this.add(btnVerCliente);
 		
-		this.listaCliente = new JComboBox();
+		this.listaCliente = new JComboBox<String>();
 		this.listaCliente.setBounds(10, 20, 149, 20);
 		this.add(listaCliente);
 		this.leerCliente();
@@ -204,7 +207,7 @@ public class CitasMedicas extends JFrame implements ActionListener{
 	}
 
 	private void leerCliente() {
-		DefaultComboBoxModel mlista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> mlista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < a.getLstCliente().size(); i++) {
 			mlista.addElement(a.getLstCliente().get(i).getIdentificacionCliente());

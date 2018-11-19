@@ -19,6 +19,7 @@ import Modelo.Especialidades;
 import Modelo.Medicos;
 
 public class ModificarMedico extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JButton btnVolver;
 	private JButton btnVerMedico;
 	private JButton btnModificarMedico;
@@ -40,13 +41,12 @@ public class ModificarMedico extends JFrame implements ActionListener{
 	private JTextField txtFechaMed;
 	private JTextField txtHoraInicio;
 	private JTextField txtHoraFin;
-	private JComboBox listaMedicos;
-	private JComboBox listaEsp;
-	private JComboBox listaDispo;
+	private JComboBox<String> listaMedicos;
+	private JComboBox<String> listaEsp;
+	private JComboBox<String> listaDispo;
 	private Medicos medico = new Medicos();
 	private Disponibilidades dispo = new Disponibilidades();
 	private Especialidades espe= new Especialidades();
-	//private DAO_Modificar dao = new DAO_Modificar();
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
 	
 	public ModificarMedico(){
@@ -63,6 +63,7 @@ public class ModificarMedico extends JFrame implements ActionListener{
 		this.crearIngresoDatos();
 		this.crearBotones();
 	}
+	
 	private void crearEtiquetas() {
 		this.identificacionMed=new JLabel();
 		this.identificacionMed.setText("Identificacion");
@@ -138,6 +139,7 @@ public class ModificarMedico extends JFrame implements ActionListener{
 		this.txtHoraFin.setBounds(90, 260, 180, 20);
 		this.add(txtHoraFin);
 	}
+	
 	private void crearBotones() {
 		this.btnVolver=new JButton();
 		this.btnVolver.setText("Volver");
@@ -169,16 +171,16 @@ public class ModificarMedico extends JFrame implements ActionListener{
 		btnVerMedico.addActionListener(this);
 		this.add(btnVerMedico);
 		
-		this.listaMedicos = new JComboBox();
+		this.listaMedicos = new JComboBox<String>();
 		this.listaMedicos.setBounds(10, 20, 149, 20);
 		this.add(listaMedicos);
 		this.leerMedicos();
 		
-		this.listaEsp = new JComboBox();
+		this.listaEsp = new JComboBox<String>();
 		this.listaEsp.setBounds(90, 170, 180, 20);
 		this.add(listaEsp);
 		
-		this.listaDispo = new JComboBox();
+		this.listaDispo = new JComboBox<String>();
 		this.listaDispo.setBounds(90, 200, 180, 20);
 		this.add(listaDispo);
 		
@@ -201,13 +203,10 @@ public class ModificarMedico extends JFrame implements ActionListener{
 			medico.setNombreMedico(txtNombreMed.getText());
 			medico.setApellidoMedico(txtApellidoMed.getText());
 			medico.setTelefonoMedico(txtTelefonoMed.getText());
-			//dao.modificarMedicoDAO(medico);
 			espe.setNombreEspecialidad(txtEspecialidad.getText());
-			//dao.modificarEspecialidadDAO(espe,medico);
 			dispo.setFecha(txtFechaMed.getText());
 			dispo.setHora_inicio(txtHoraInicio.getText());
 			dispo.setHora_fin(txtHoraFin.getText());
-			//dao.modificarDisponibilidadDAO(dispo,medico);
 			ModificarMedico eli= new ModificarMedico();
 			this.setVisible(false);
 			eli.setVisible(true);
@@ -224,7 +223,7 @@ public class ModificarMedico extends JFrame implements ActionListener{
 	}
 	
 	private void leerMedicos() {
-		DefaultComboBoxModel mlista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> mlista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < a.getLstMedicos().size(); i++) {
 			mlista.addElement(a.getLstMedicos().get(i).getIdentificacion());
@@ -245,7 +244,7 @@ public class ModificarMedico extends JFrame implements ActionListener{
 	}
 	
 	private void leerEspec(){
-		DefaultComboBoxModel eLista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> eLista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < medico.getLstEspecialidades().size(); i++) {
 			eLista.addElement(medico.getLstEspecialidades().get(i).getNombreEspecialidad());
@@ -254,7 +253,7 @@ public class ModificarMedico extends JFrame implements ActionListener{
 	}
 	
 	private void leerDispo(){
-		DefaultComboBoxModel dLista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> dLista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < medico.getLstDisponibilidades().size(); i++) {
 			dLista.addElement(medico.getLstDisponibilidades().get(i).getFecha());

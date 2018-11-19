@@ -16,6 +16,7 @@ import Modelo.CentroMedico;
 import Modelo.Servicios;
 
 public class ConsultarServicio extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JButton btnVolver;
 	private JButton btnVerServicio;
 	private JLabel nomServicio;
@@ -32,9 +33,8 @@ public class ConsultarServicio extends JFrame implements ActionListener{
 	private JTextField txtCosServicio;
 	private JTextField txtPrecioCM;
 	private JTextField txtPrecioMedico;
-	private JComboBox listaServicios;
+	private JComboBox<String> listaServicios;
 	private Servicios servicio = new Servicios();
-	
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
 	
 	public ConsultarServicio(){
@@ -139,7 +139,7 @@ public class ConsultarServicio extends JFrame implements ActionListener{
 		btnVerServicio.addActionListener(this);
 		this.add(btnVerServicio);
 		
-		this.listaServicios = new JComboBox();
+		this.listaServicios = new JComboBox<String>();
 		this.listaServicios.setBounds(10, 20, 149, 20);
 		this.add(listaServicios);
 		this.leerServicios();
@@ -159,7 +159,7 @@ public class ConsultarServicio extends JFrame implements ActionListener{
 	}
 	
 	private void leerServicios() {
-		DefaultComboBoxModel slista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> slista = new DefaultComboBoxModel<String>();
 		for (int i = 0; i < a.getLstServicios().size(); i++) {
 			slista.addElement(a.getLstServicios().get(i).getNombreServicio());
 		}
@@ -176,7 +176,6 @@ public class ConsultarServicio extends JFrame implements ActionListener{
 		txtDurServicio.setText(servicio.getDuracionServicio());
 		txtCosServicio.setText(servicio.getCostoServicio());
 		precioCentroMedico();
-//		precioMedico();
 	}
 	
 	private void precioCentroMedico(){
@@ -189,12 +188,4 @@ public class ConsultarServicio extends JFrame implements ActionListener{
 		txtPrecioCM.setText(precioFinalCentroMedico);
 		txtPrecioMedico.setText(precioFinalMedico);
 	}
-	
-//	private void precioMedico(){
-//		String precioM = (servicio.getCostoServicio());
-//		int precio = Integer.parseInt(precioM);
-//		int precioGanancia = (int) ((precio * 0.15));
-//		String precioFinalMedico = Integer.toString(precioGanancia);
-//		txtPrecioMedico.setText(precioFinalMedico);
-//	}
 }

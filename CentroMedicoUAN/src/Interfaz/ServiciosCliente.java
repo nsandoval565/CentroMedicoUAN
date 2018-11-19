@@ -9,18 +9,17 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Controlador.Fachada;
 import Modelo.CentroMedico;
-import Modelo.Clientes;
 import Modelo.Disponibilidades;
 import Modelo.Especialidades;
 import Modelo.Medicos;
 import Modelo.Servicios;
 
 public class ServiciosCliente extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JLabel medicosDisponibles;
 	private JLabel selectMedico;
 	private JLabel especialidadMedico;
@@ -40,13 +39,12 @@ public class ServiciosCliente extends JFrame implements ActionListener{
 	private JButton btnSeleccionarMedico;
 	private JButton btnSeleccionarServicio;
 	private JButton btnSeleccionarFecha;
-	private JComboBox listaEsp;
-	private JComboBox listaMedicos;
-	private JComboBox listaDispo;
+	private JComboBox<String> listaEsp;
+	private JComboBox<String> listaMedicos;
+	private JComboBox<String> listaDispo;
 	private Medicos medico = new Medicos();
 	private Disponibilidades dispo = new Disponibilidades();
 	private Especialidades espe= new Especialidades();
-	private Clientes cliente = new Clientes();
 	private Servicios servicio = new Servicios();
 	private CentroMedico a = Fachada.getInstance().getCentroMedico();
 	
@@ -168,16 +166,16 @@ public class ServiciosCliente extends JFrame implements ActionListener{
 		btnSeleccionarFecha.addActionListener(this);
 		this.add(btnSeleccionarFecha);
 		
-		this.listaMedicos = new JComboBox();
+		this.listaMedicos = new JComboBox<String>();
 		this.listaMedicos.setBounds(90, 35, 180, 20);
 		this.add(listaMedicos);
 		this.leerMedicos();
 		
-		this.listaEsp = new JComboBox();
+		this.listaEsp = new JComboBox<String>();
 		this.listaEsp.setBounds(90, 95, 180, 20);
 		this.add(listaEsp);
 		
-		this.listaDispo = new JComboBox();
+		this.listaDispo = new JComboBox<String>();
 		this.listaDispo.setBounds(90, 155, 180, 20);
 		this.add(listaDispo);
 	}
@@ -205,7 +203,7 @@ public class ServiciosCliente extends JFrame implements ActionListener{
 	}
 	
 	private void leerMedicos() {
-		DefaultComboBoxModel mlista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> mlista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < a.getLstMedicos().size(); i++) {
 			mlista.addElement(a.getLstMedicos().get(i).getIdentificacion());
@@ -214,7 +212,7 @@ public class ServiciosCliente extends JFrame implements ActionListener{
 	}
 	
 	private void leerEspec(){
-		DefaultComboBoxModel eLista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> eLista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < medico.getLstEspecialidades().size(); i++) {
 			eLista.addElement(medico.getLstEspecialidades().get(i).getNombreEspecialidad());
@@ -223,7 +221,7 @@ public class ServiciosCliente extends JFrame implements ActionListener{
 	}
 	
 	private void leerDispo(){
-		DefaultComboBoxModel dLista = new DefaultComboBoxModel();
+		DefaultComboBoxModel<String> dLista = new DefaultComboBoxModel<String>();
 		
 		for (int i = 0; i < medico.getLstDisponibilidades().size(); i++) {
 			dLista.addElement(medico.getLstDisponibilidades().get(i).getFecha());

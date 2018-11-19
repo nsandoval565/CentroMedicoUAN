@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 public class Ubicacion extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JLabel titulo;
 	private JLabel ubicacion;
 	private JLabel imagen;
